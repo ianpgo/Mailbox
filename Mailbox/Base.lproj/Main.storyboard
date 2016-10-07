@@ -1,26 +1,128 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Mailbox View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
+                <viewController id="BYZ-38-t0r" customClass="MailboxViewController" customModule="Mailbox" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="menu" id="TCR-fY-KAT">
+                                <frame key="frameInset" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" misplaced="YES" id="WzM-Qn-I6c">
+                                <frame key="frameInset" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" image="help_label" id="l3p-DF-7ko">
+                                        <frame key="frameInset" minY="75" width="375" height="42"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" image="search" id="CQ3-QM-qtd">
+                                        <frame key="frameInset" minY="117" width="375" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" misplaced="YES" image="nav" id="JUr-gb-pdn">
+                                        <frame key="frameInset" width="375" height="76"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="1Gh-d2-dK2">
+                                        <frame key="frameInset" minY="165" width="375" height="502"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" id="AM5-i7-0v3">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="message" id="FG8-by-Pak">
+                                                        <frame key="frameInset" width="375" height="100"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <gestureRecognizers/>
+                                                        <connections>
+                                                            <outletCollection property="gestureRecognizers" destination="aU4-N9-sDx" appends="YES" id="85r-h7-aB9"/>
+                                                        </connections>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.84017485380000001" green="0.84019464249999998" blue="0.84018403289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" image="feed" id="ost-qd-i7t">
+                                                <rect key="frame" x="0.0" y="100" width="375" height="1409"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                    </scrollView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleAspectFill" image="list" id="e0n-Et-xtQ">
+                                        <frame key="frameInset" width="375" height="667"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="mbv-Je-Taf" appends="YES" id="9SH-fC-VbX"/>
+                                        </connections>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleAspectFill" image="reschedule" id="d53-8Y-ibW">
+                                        <frame key="frameInset" width="375" height="667"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="bpu-6F-Xmy" appends="YES" id="c56-DW-rDx"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="feedImageView" destination="ost-qd-i7t" id="ji9-H8-SNh"/>
+                        <outlet property="listFullImageView" destination="e0n-Et-xtQ" id="gs9-xq-n72"/>
+                        <outlet property="mainView" destination="WzM-Qn-I6c" id="zr7-EV-xth"/>
+                        <outlet property="menuImageView" destination="TCR-fY-KAT" id="MVm-kR-sXg"/>
+                        <outlet property="messageBackgroundView" destination="AM5-i7-0v3" id="PoT-UL-Fz3"/>
+                        <outlet property="messageImageView" destination="FG8-by-Pak" id="i05-lw-CgI"/>
+                        <outlet property="messageScrollView" destination="1Gh-d2-dK2" id="OKm-lU-5l0"/>
+                        <outlet property="rescheduleFullImageView" destination="d53-8Y-ibW" id="Gd9-bH-dHC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="aU4-N9-sDx">
+                    <connections>
+                        <action selector="didPanMessage:" destination="BYZ-38-t0r" id="KYM-Gk-GbK"/>
+                    </connections>
+                </panGestureRecognizer>
+                <tapGestureRecognizer id="bpu-6F-Xmy">
+                    <connections>
+                        <action selector="didTapFullScreen:" destination="BYZ-38-t0r" id="bmz-Dy-RBo"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="mbv-Je-Taf">
+                    <connections>
+                        <action selector="didTapFullScreen:" destination="BYZ-38-t0r" id="X2r-SU-HCB"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
+            <point key="canvasLocation" x="28.5" y="120.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="feed" width="320" height="1202"/>
+        <image name="help_label" width="320" height="37"/>
+        <image name="list" width="320" height="568"/>
+        <image name="menu" width="320" height="568"/>
+        <image name="message" width="320" height="86"/>
+        <image name="nav" width="320" height="65"/>
+        <image name="reschedule" width="320" height="568"/>
+        <image name="search" width="320" height="42"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>
