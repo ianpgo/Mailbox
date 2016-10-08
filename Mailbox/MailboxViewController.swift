@@ -10,6 +10,9 @@ import UIKit
 
 class MailboxViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet weak var miscScrollView: UIScrollView!
+    @IBOutlet weak var readFeedImageView: UIImageView!
+    
     @IBOutlet weak var messageScrollView: UIScrollView!
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var messageImageView: UIImageView!
@@ -32,6 +35,7 @@ class MailboxViewController: UIViewController, UIScrollViewDelegate {
     
     var mainViewInitialCenter: CGPoint!
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var rescheduleFullImageView: UIImageView!
     @IBOutlet weak var listFullImageView: UIImageView!
     
@@ -42,6 +46,8 @@ class MailboxViewController: UIViewController, UIScrollViewDelegate {
         
         messageScrollView.contentSize = feedImageView.frame.size
         messageScrollView.contentSize.height += messageImageView.frame.height
+        
+        miscScrollView.contentSize = readFeedImageView.frame.size
         
         rightMessageIcon = UIImageView(image: laterIconImage)
         messageBackgroundView.addSubview(rightMessageIcon)
@@ -60,6 +66,8 @@ class MailboxViewController: UIViewController, UIScrollViewDelegate {
         edgeGesture.edges = UIRectEdge.left
         mainView.addGestureRecognizer(edgeGesture)
         
+        segmentedControl.selectedSegmentIndex = 1
+        miscScrollView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -225,26 +233,72 @@ class MailboxViewController: UIViewController, UIScrollViewDelegate {
                 })
         }
     }
+    @IBAction func didTapSegmented(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            miscScrollView.delegate = self
+            miscScrollView.isHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                self.messageScrollView.frame.origin.x = 375
+                }, completion: { (Bool) in
+                    
+            })
+            print("later")
+        } else if sender.selectedSegmentIndex == 1 {
+            messageScrollView.delegate = self
+            miscScrollView.isHidden = true
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                self.messageScrollView.frame.origin.x = 0
+                }, completion: { (Bool) in
+                
+            })
+            print("mail")
+        } else if sender.selectedSegmentIndex == 2 {
+            miscScrollView.delegate = self
+            miscScrollView.isHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                self.messageScrollView.frame.origin.x = -375
+                }, completion: { (Bool) in
+                    
+            })
+            print("check")
+        }
+    }
     
     override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
         if motion == .motionShake{
             print("shake me")
-            self.messageBackgroundView.backgroundColor = UIColor.lightGray
             
-            UIView.animate(withDuration: 0.2, animations: {
-                self.feedImageView.frame.origin.y = self.messageImageView.frame.height
-                }, completion: { (Bool) in
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.messageImageView.frame.origin.x = 0
-                        self.messageBackgroundView.isHidden = false
-                        }, completion: { (Bool) in
-                            self.messageImageView.center = self.messageViewInitialCenter
-                            self.leftMessageIcon.center = self.leftMessageIconInitialCenter
-                            self.rightMessageIcon.center = self.rightMessageIconInitialCenter
-                            self.leftMessageIcon.image = self.archiveIconImage
-                            self.rightMessageIcon.image = self.laterIconImage
-                    })
-            })
+            //login error
+            let alertController = UIAlertController(title: "Undo Message", message: "Are you sure?", preferredStyle: .alert)
+            
+            // create a cancel action
+            let cancelAction = UIAlertAction(title: "Cancel", style:.default) { (action) in
+                // handle cancel response here. Doing nothing will dismiss the view.
+            }
+            
+            let UndoAction = UIAlertAction(title: "Undo", style:.default) { (action) in
+                self.messageBackgroundView.backgroundColor = UIColor.lightGray
+                
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.feedImageView.frame.origin.y = self.messageImageView.frame.height
+                    }, completion: { (Bool) in
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.messageImageView.frame.origin.x = 0
+                            self.messageBackgroundView.isHidden = false
+                            }, completion: { (Bool) in
+                                self.messageImageView.center = self.messageViewInitialCenter
+                                self.leftMessageIcon.center = self.leftMessageIconInitialCenter
+                                self.rightMessageIcon.center = self.rightMessageIconInitialCenter
+                                self.leftMessageIcon.image = self.archiveIconImage
+                                self.rightMessageIcon.image = self.laterIconImage
+                        })
+                })
+            }
+            // add the cancel action to the alertController
+            alertController.addAction(cancelAction)
+            alertController.addAction(UndoAction)
+            
+            present(alertController, animated: true, completion: nil)
 
         }
     }
